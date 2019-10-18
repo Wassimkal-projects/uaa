@@ -74,6 +74,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/users/registerUser").permitAll()
                 .antMatchers("/api/users/activateUser").permitAll()
                 .antMatchers("/api/users/authenticate").permitAll()
+                .antMatchers("/api/social/fb-auth").permitAll()
+                .antMatchers("/api/social/google-auth").permitAll()
                 .antMatchers("/api/**").authenticated()
             .and()
                 .apply(securityConfigurerAdapter());

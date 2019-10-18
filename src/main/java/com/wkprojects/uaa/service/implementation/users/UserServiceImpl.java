@@ -89,7 +89,7 @@ public class UserServiceImpl implements IUserService {
         try {
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginModel.getEmail(), loginModel.getPassword());
             /* Authenticating user: uses UserDetailsService Bean to fetch user from db,check if activated
-            * Create SpringSecurity userDetails with email,authorities, actual password*/
+            * Creates SpringSecurity userDetails with email,authorities, actual password*/
             Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             boolean rememberMe = (loginModel.getRememberMe() == null) ? false : loginModel.getRememberMe();

@@ -23,6 +23,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin
 public class AccountResource {
 
     private final IUserService userService;

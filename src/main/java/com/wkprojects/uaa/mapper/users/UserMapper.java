@@ -24,11 +24,17 @@ public interface UserMapper {
     List<UserDto> userToUserDtoList(List<User> userList);
 
     default Set<String> autoritiesToString(Set<Authority> authorities) {
+        if( authorities == null){
+            return null;
+        }
         return authorities.stream().map(Authority::getName)
                 .collect(Collectors.toSet());
     }
 
     default Set<Authority> stringsToAuthorities(Set<String> strings) {
+        if( strings == null){
+            return null;
+        }
         return strings.stream().map(string -> {
             Authority auth = new Authority();
             auth.setName(string);
