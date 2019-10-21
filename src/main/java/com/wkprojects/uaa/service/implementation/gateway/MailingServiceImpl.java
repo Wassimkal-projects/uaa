@@ -9,7 +9,7 @@ import com.mailjet.client.MailjetRequest;
 import com.mailjet.client.errors.MailjetException;
 import com.mailjet.client.errors.MailjetSocketTimeoutException;
 import com.mailjet.client.resource.Emailv31;
-import com.wkprojects.uaa.constants.AffcarConstants;
+import com.wkprojects.uaa.constants.AppConstants;
 import com.wkprojects.uaa.constants.MailjetConstants;
 import com.wkprojects.uaa.domain.users.User;
 import com.wkprojects.uaa.service.implementation.users.SocialUserServiceImpl;
@@ -47,14 +47,14 @@ public class MailingServiceImpl implements IMailingService {
 
         Context context = new Context();
         context.setVariable("user", user);
-        context.setVariable("baseUrl", AffcarConstants.BASE_URL);
-        String content = templateEngine.process(AffcarConstants.EMAIL_TEMPLATE_NAME, context);
+        context.setVariable("baseUrl", AppConstants.BASE_URL);
+        String content = templateEngine.process(AppConstants.EMAIL_TEMPLATE_NAME, context);
 
         message.put(Emailv31.Message.FROM, new JSONObject()
                 .put(Emailv31.Message.EMAIL, MailjetConstants.SENDER_EMAIL)
-                .put(Emailv31.Message.NAME, AffcarConstants.ACTIVATION_EMAIL_SENDER_NAME)
+                .put(Emailv31.Message.NAME, AppConstants.ACTIVATION_EMAIL_SENDER_NAME)
         )
-                .put(Emailv31.Message.SUBJECT, AffcarConstants.ACTIVATION_EMAIL_SUBJECT)
+                .put(Emailv31.Message.SUBJECT, AppConstants.ACTIVATION_EMAIL_SUBJECT)
                 .put(Emailv31.Message.HTMLPART, content)
                 .put(Emailv31.Message.TO, new JSONArray()
                         .put(new JSONObject().put(Emailv31.Message.EMAIL, user.getEmail())));

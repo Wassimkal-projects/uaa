@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"ismail.sabeur.hamza@affcar.tn\",\n\t\"password\":\"admin\",\n\t\"authorities\":\n\t\t[\n\t\t\"ROLE_USER\"\n\t\t],\n\t\"langKey\":\"FR\"\n}",
+					"raw": "{\n\t\"email\":\"prenom.nom@domain.tn\",\n\t\"password\":\"admin\",\n\t\"authorities\":\n\t\t[\n\t\t\"ROLE_USER\"\n\t\t],\n\t\"langKey\":\"FR\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,7 +113,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"ismail.hamza@affcar.tn\",\n\t\"password\":\"admin\"\n}",
+					"raw": "{\n\t\"email\":\"prenom.nom@domain.tn\",\n\t\"password\":\"admin\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -382,7 +382,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{wk-url}}/api/users/deactivateUser/ismail.hamza@affcar.tn",
+					"raw": "{{wk-url}}/api/users/deactivateUser/prenom.nom@domain.tn",
 					"host": [
 						"{{wk-url}}"
 					],
@@ -390,7 +390,7 @@
 						"api",
 						"users",
 						"deactivateUser",
-						"ismail.hamza@affcar.tn"
+						"prenom.nom@domain.tn"
 					]
 				}
 			},
@@ -455,7 +455,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\t\n\t\"id\":\"1\",\n\t\"email\":\"wassim.kalboussi@affcar.tn\",\n\t\"password\":\"admin\",\n\t\"authorities\":\n\t\t[\n\t\t\"ROLE_USER\",\n\t\t\"ROLE_ADMIN\"\n\t\t],\n\t\"langKey\":\"FR\"\n}",
+					"raw": "{\t\n\t\"id\":\"1\",\n\t\"email\":\"wassim.kalboussi@domain.tn\",\n\t\"password\":\"admin\",\n\t\"authorities\":\n\t\t[\n\t\t\"ROLE_USER\",\n\t\t\"ROLE_ADMIN\"\n\t\t],\n\t\"langKey\":\"FR\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -503,7 +503,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{wk-url}}/api/users/resetPassword/init/wassim.kalboussi@affcar.tn",
+					"raw": "{{wk-url}}/api/users/resetPassword/init/wassim.kalboussi@domain.tn",
 					"host": [
 						"{{wk-url}}"
 					],
@@ -512,7 +512,7 @@
 						"users",
 						"resetPassword",
 						"init",
-						"wassim.kalboussi@affcar.tn"
+						"wassim.kalboussi@domain.tn"
 					]
 				}
 			},
@@ -586,7 +586,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{wk-url}}/api/users/deleteUser/ismail.hamza@affcar.tn",
+					"raw": "{{wk-url}}/api/users/deleteUser/prenom.nom@domain.tn",
 					"host": [
 						"{{wk-url}}"
 					],
@@ -594,7 +594,7 @@
 						"api",
 						"users",
 						"deleteUser",
-						"ismail.hamza@affcar.tn"
+						"prenom.nom@domain.tn"
 					]
 				}
 			},
