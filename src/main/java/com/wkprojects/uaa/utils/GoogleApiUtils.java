@@ -9,7 +9,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.wkprojects.uaa.model.GoogleUserModel;
+import com.wkprojects.uaa.model.SocialUserModel;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -20,7 +20,7 @@ public class GoogleApiUtils {
 
     private static final String CLIENT_ID = "196194089193-3ks6sacirmdorvbmsra2o43t745hdbtd.apps.googleusercontent.com";
 
-    public static Optional<GoogleUserModel> checkIfGoogleTokenIsValid(String idTokenString) throws GeneralSecurityException, IOException {
+    public static Optional<SocialUserModel> checkIfGoogleTokenIsValid(String idTokenString) throws GeneralSecurityException, IOException {
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance())
                 .setAudience(Collections.singletonList(CLIENT_ID))
                 .build();
@@ -29,15 +29,18 @@ public class GoogleApiUtils {
         if (idToken != null) {
             Payload payload = idToken.getPayload();
 
-            GoogleUserModel googleUserModel = new GoogleUserModel();
-            googleUserModel.setUserId(payload.getSubject());
+            SocialUserModel googleUserModel = new SocialUserModel();
             googleUserModel.setEmail(payload.getEmail());
             googleUserModel.setName((String) payload.get("name"));
+            googleUserModel.setFirstName((String) payload.get("given_name"));
+            googleUserModel.setLastName((String) payload.get("family_name"));
             googleUserModel.setPictureUrl((String) payload.get("picture"));
+
+/*            googleUserModel.setUserId(payload.getSubject());
             googleUserModel.setLocale((String) payload.get("locale"));
             googleUserModel.setFamilyName((String) payload.get("family_name"));
             googleUserModel.setGivenName((String) payload.get("given_name"));
-            googleUserModel.setEmailVerified(payload.getEmailVerified());
+            googleUserModel.setEmailVerified(payload.getEmailVerified());*/
 
             return Optional.of(googleUserModel);
 

@@ -66,6 +66,9 @@ public class User extends AbstractAuditingEntity {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_authorities",
@@ -81,6 +84,14 @@ public class User extends AbstractAuditingEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Set<Authority> getAuthorities() {

@@ -13,7 +13,9 @@ import com.wkprojects.uaa.repository.users.UserRepository;
 import com.wkprojects.uaa.security.AuthoritiesConstants;
 import com.wkprojects.uaa.security.SecurityUtils;
 import com.wkprojects.uaa.security.jwt.TokenProvider;
+import com.wkprojects.uaa.service.dto.emails.EmailDto;
 import com.wkprojects.uaa.service.dto.users.UserDto;
+import com.wkprojects.uaa.service.interfaces.gateway.IMailingService;
 import com.wkprojects.uaa.service.interfaces.users.IUserService;
 import com.wkprojects.uaa.utils.RandomUtil;
 import com.wkprojects.uaa.web.rest.errors.BadRequestException;
@@ -45,8 +47,9 @@ public class UserServiceImpl implements IUserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final TokenProvider tokenProvider;
+    private final IMailingService mailingService;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, AuthorityRepository authorityRepository,
+    public UserServiceImpl(IMailingService mailingService,UserRepository userRepository, UserMapper userMapper, AuthorityRepository authorityRepository,
                            PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager,
                            TokenProvider tokenProvider) {
         this.userRepository = userRepository;
@@ -55,6 +58,7 @@ public class UserServiceImpl implements IUserService {
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.tokenProvider = tokenProvider;
+        this.mailingService = mailingService;
     }
 
     @Override
@@ -81,7 +85,14 @@ public class UserServiceImpl implements IUserService {
         userToSave.setActivated(false);
         userToSave.setActivationKey(RandomUtil.generateActivationKey());
         SecurityUtils.getCurrentUserEmail().ifPresent(userToSave::setCreatedBy);
-        return userMapper.userToUserDto(userRepository.save(userToSave));
+        User savedUser = userRepository.save(userToSave);
+
+        EmailDto emailDto = new EmailDto();
+        emailDto.setTo(savedUser.getEmail());
+        emailDto.setTextPart("Activation key: "+ savedUser.getActivationKey());
+//        mailingService.sendVerifiedEmail(emailDto);
+        mailingService.sendActivationEmail(savedUser);
+        return userMapper.userToUserDto(savedUser);
     }
 
     @Override

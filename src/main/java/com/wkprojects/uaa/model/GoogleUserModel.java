@@ -6,7 +6,7 @@ package com.wkprojects.uaa.model;
 
 public class GoogleUserModel {
 
-    boolean emailVerified;
+    private boolean emailVerified;
 
     private String userId;
 
