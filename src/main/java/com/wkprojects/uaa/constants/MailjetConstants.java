@@ -6,7 +6,7 @@ package com.wkprojects.uaa.constants;
 
 public final class MailjetConstants {
 
-    public static String SENDER_EMAIL = "wassimkal.projects@gmail.com";
-    public static String MJ_APIKEY_PUBLIC = "3a41fd1c54ce18cb7b65a8bab1d6dfe7";
-    public static String MJ_APIKEY_PRIVATE = "290ce25c8152a96763e9751fa19afeb6";
+    public static String SENDER_EMAIL = "sender-email";
+    public static String MJ_APIKEY_PUBLIC = "MJ_APIKEY_PUBLIC";
+    public static String MJ_APIKEY_PRIVATE = "MJ_APIKEY_PRIVATE";
 }
